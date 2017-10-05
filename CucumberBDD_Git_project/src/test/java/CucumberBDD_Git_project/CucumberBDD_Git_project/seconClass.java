@@ -5,6 +5,7 @@ public class seconClass {
 	public static void main(String[] args) {
 		System.out.println("This is your 2nd code");
 		System.out.println("This is success too");
+		System.out.println("Hello updated code");
 
 	}
 
