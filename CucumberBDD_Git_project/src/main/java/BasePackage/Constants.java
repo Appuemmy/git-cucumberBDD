@@ -24,7 +24,7 @@ public class Constants {
 	 @Test(priority= 0)
 		public static void logMethod(){
 			 mylog = Logger.getLogger(Logger.class.getName());
-			DOMConfigurator.configure("C:\\Aparna\\Workspace_project\\cucumberBDD_Project\\Log4j.xml");
+			DOMConfigurator.configure("C:\\Users\\usemm\\git\\git-cucumberBDD\\CucumberBDD_Git_project\\Log4j.xml");
 			//mylog.info("invoke Browser")
 		
 		}
@@ -32,7 +32,7 @@ public class Constants {
 	public static void loadData()throws Exception{
 		
 		property = new Properties();
-		File file = new File("C:\\Aparna\\Workspace_project\\cucumberBDD_Project\\Configuration\\Config.properties");
+		File file = new File("C:\\Users\\usemm\\git\\git-cucumberBDD\\CucumberBDD_Git_project\\ConfigFolder\\config.properties");
 		FileReader obj = new FileReader(file);
 		property.load(obj);
 		
@@ -59,21 +59,22 @@ public class Constants {
 		driver=new ChromeDriver();
    
 		System.out.println("==============SetUp Ready==============");
-		mylog.info("Application stated");
+		
 			
 	    driver.get("http://newtours.demoaut.com/");
 	   		
-	    Util.takeScreenshot(driver,"UrlLaunched");
+	    Util.takeScreenshot(driver,"ApplLaunched");
 	    Thread.sleep(2000);
 	    System.out.println("Mercury Application launched");
 	    System.out.println(driver.getTitle());
-	      
+	  //  mylog.info("Application started");  
      }
     @Test(priority=2)
     public static void verifyApplTitle() throws Exception{
     	
     	 Assert.assertTrue(driver.getTitle().contains("Mercury Tours"));
     	 System.out.println("Title of the Application Url =  "+driver.getTitle());
+    	 mylog.info("Verified Appllication Title");
     }
     /*@Test
     public static void register() throws Exception{
@@ -83,7 +84,7 @@ public class Constants {
     }*/
     @Test(priority=3)
    	public static void login()throws Exception{
-    	    // mylog.info("Login page");
+    	    mylog.info("Login page");
     	
     	String uname = getObject("username");
     	String pw = property.getProperty("password");
@@ -91,7 +92,7 @@ public class Constants {
 			 driver.findElement(By.xpath("//input[@name='password']")).sendKeys(pw);
 			 
 			 Thread.sleep(2000);
-			 //Util.takeScreenshot(driver,"login");
+			 Util.takeScreenshot(driver,"login");
 			 
 			 driver.findElement(By.xpath("//input[@name='login']")).click();
 			 Thread.sleep(20000);
@@ -99,8 +100,13 @@ public class Constants {
 		     System.out.println("Login Success");
 	}
     @Test(priority=4)
-   	public static void closeBrowser()throws Exception{
+   	public static void HomePageOpensSuccess()throws Exception{
     	
+    	System.out.println("Home page opens successfully");
+    }
+    @Test(priority=5)
+   	public static void closeBrowser()throws Exception{
+    	mylog.info("Browser closed");
     	driver.quit();
     }
 
